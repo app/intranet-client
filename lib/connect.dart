@@ -42,9 +42,11 @@ class _ConnectState extends State<Connect> {
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                prefixIcon: Padding(padding: EdgeInsets.only(left:15,top:15,bottom:15),
+                  child: Text('https://',style:TextStyle(fontSize:16))),
                 labelText: 'Intranet URL',
                 ),
-                controller: TextEditingController()..text = 'http://intranet.signapi.art',
+                controller: TextEditingController()..text = 'intranet.signapi.art',
               ),
             ),
             Text('Copy and paste or type in your intranet\'s URL',
