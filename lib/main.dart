@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:first/signin.dart';
+import 'package:first/connect.dart';
 
-void main() => runApp(const MyApp()); 
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignIn(),
+      home: const Connect(),
     );
   }
 }
-
