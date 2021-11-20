@@ -58,7 +58,7 @@ class _ConnectState extends State<Connect> {
                     ..text = 'intranet.signapi.art',
                 ),
               ),
-              Text('Copy and paste or type in your intranet\'s URL',
+              Text("Copy and paste or type in your intranet's URL",
                   style: TextStyle(fontSize: 14, color: Colors.grey)),
               Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 10),
