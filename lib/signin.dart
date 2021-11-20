@@ -57,6 +57,7 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(
                 width: double.infinity,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
