@@ -12,21 +12,21 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
-  final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+    final Color bgColor = Color(int.parse("0xFF007291"));
     return Scaffold(
-        appBar: AppBar(title: const Text('Intranet sign in')),
+        appBar: AppBar(title: const Text('https://intranet.signapi.art sign in'),backgroundColor: bgColor,),
         body: SingleChildScrollView(child: 
-        Column(
+          Padding(
+            padding: EdgeInsets.all(40),
+        child: Column(
           children: <Widget>[
-          Padding(padding: EdgeInsets.all(10),),
-          Container(
+          SizedBox(
             width: 120,
             height: 120,
             child: Image.asset('asset/images/stamp.png'),
           ),
           Padding(
-            padding: EdgeInsets.only(top:20,left:10,right:10,bottom:10),
+            padding: EdgeInsets.only(top:20,bottom:10),
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.only(top:10,bottom:10),
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -47,19 +47,21 @@ class _SignInState extends State<SignIn> {
             ),
 
           TextButton(
-              onPressed: (){
-                /* TODO FORGOT PASSWORD SCREEN GOES HERE */
-              },
+              onPressed: (){ },
               child: Text(
                        'Forgot Password',
-              style: TextStyle(color: Colors.blue, fontSize: 15),
+              style: TextStyle(color: bgColor, fontSize: 15),
             ),
           ),
-          ElevatedButton(
-            onPressed: (){ /* TODO */},
-            style: style,
-            child: Text('Sign In'),),
-          ]
-        )));
+          SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(bgColor)),
+                child: Text('Sign In'))
+          )
+            ]
+            ))));
   }
 }
