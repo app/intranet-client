@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:first/connect.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -56,10 +57,17 @@ class _SignInState extends State<SignIn> {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Connect()));
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(bgColor)),
-                child: Text('Sign In'))
+                child: Text('SIGN IN',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                ),
+                ),
           )
             ]
             ))));
