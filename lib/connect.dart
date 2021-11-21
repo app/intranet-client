@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:first/signin.dart';
+import 'package:first/scanner.dart';
+import 'package:first/theme.dart';
 
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);
@@ -11,9 +13,12 @@ class Connect extends StatefulWidget {
 }
 
 class _ConnectState extends State<Connect> {
+
+  /* String intranetUrl =  'intranet.signapi.art'; */
+  String intranetUrl =  'AAA5';
+
   @override
   Widget build(BuildContext context) {
-    final Color bgColor = Color(int.parse("0xFF007291"));
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -46,6 +51,21 @@ class _ConnectState extends State<Connect> {
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
+                    /* suffixIcon: Icon(Icons.star), */
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.qr_code_rounded),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => QRViewExample(setUrl: (url){
+                                setState( (){
+                                  intranetUrl = url;
+                              });
+                              })
+                        ));
+                      },
+                    ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 15, top: 15, bottom: 15),
                       child: Text(
@@ -56,7 +76,7 @@ class _ConnectState extends State<Connect> {
                     labelText: 'Intranet URL',
                   ),
                   controller: TextEditingController()
-                    ..text = 'intranet.signapi.art',
+                    ..text = intranetUrl,
                 ),
               ),
               Text("Copy and paste or type in your intranet's URL",
@@ -68,7 +88,8 @@ class _ConnectState extends State<Connect> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignIn()));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => SignIn()));
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(bgColor),
