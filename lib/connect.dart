@@ -5,6 +5,9 @@ import 'package:first/signin.dart';
 import 'package:first/scanner.dart';
 import 'package:first/theme.dart';
 
+const httpsProtocol = 'https://';
+const httpProtocol = 'http://';
+
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);
 
@@ -13,9 +16,23 @@ class Connect extends StatefulWidget {
 }
 
 class _ConnectState extends State<Connect> {
-
-  /* String intranetUrl =  'intranet.signapi.art'; */
-  String intranetUrl =  'AAA5';
+  String intranetUrl = '';
+  String protocol = httpsProtocol;
+  setUrl(url) {
+    setState(() {
+      if (url.toString().trim().contains(httpsProtocol, 0)) {
+        intranetUrl = url.toString().trim().replaceFirst(httpsProtocol, '');
+        protocol = httpsProtocol;
+        return;
+      }
+      if (url.toString().trim().contains(httpProtocol, 0)) {
+        intranetUrl = url.toString().trim().replaceFirst(httpProtocol, '');
+        protocol = httpProtocol;
+        return;
+      }
+      intranetUrl = url;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,35 +68,37 @@ class _ConnectState extends State<Connect> {
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    /* suffixIcon: Icon(Icons.star), */
                     suffixIcon: IconButton(
                       icon: Icon(Icons.qr_code_rounded),
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QRViewExample(setUrl: (url){
-                                setState( (){
-                                  intranetUrl = url;
-                              });
-                              })
-                        ));
+                            builder: (context) => QRViewExample(setUrl: setUrl),
+                          ),
+                        );
                       },
                     ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 15, top: 15, bottom: 15),
                       child: Text(
-                        'https://',
+                        protocol,
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
-                    labelText: 'Intranet URL',
                   ),
-                  controller: TextEditingController()
-                    ..text = intranetUrl,
+                  controller: TextEditingController()..text = intranetUrl,
+                  onChanged: (text) {
+                    if (text == '') {
+                      setState(() {
+                        protocol = httpsProtocol;
+                        intranetUrl = text;
+                      });
+                    }
+                  },
                 ),
               ),
-              Text("Copy and paste or type in your intranet's URL",
+              Text("Scan QR code or type in your intranet's URL",
                   style: TextStyle(fontSize: 14, color: Colors.grey)),
               Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 10),
