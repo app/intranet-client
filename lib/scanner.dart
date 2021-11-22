@@ -50,7 +50,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    const Text('Point to QR code of Intranet'),
+                    const Text('Point camera to QR code of Intranet'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
