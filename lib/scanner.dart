@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:first/theme.dart';
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key, required this.setUrl}) : super(key: key);
+class QRViewWindow extends StatefulWidget {
+  const QRViewWindow({Key? key, required this.setUrl}) : super(key: key);
 
   final Function setUrl;
 
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() => _QRViewExampleState(setUrl: setUrl);
+  State<StatefulWidget> createState() => _QRViewWindowState(setUrl: setUrl);
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _QRViewWindowState extends State<QRViewWindow> {
   final Function setUrl;
-  _QRViewExampleState({required this.setUrl});
+  _QRViewWindowState({required this.setUrl});
   Barcode? result;
   BuildContext? myContext;
   QRViewController? controller;

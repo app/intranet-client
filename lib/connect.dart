@@ -74,7 +74,7 @@ class _ConnectState extends State<Connect> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => QRViewExample(setUrl: setUrl),
+                            builder: (context) => QRViewWindow(setUrl: setUrl),
                           ),
                         );
                       },
