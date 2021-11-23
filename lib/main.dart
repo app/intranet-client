@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Connect(),
+      initialRoute: '/connect',
+      routes: {
+        '/connect': (context) => const Connect(),
+      },
     );
   }
 }
