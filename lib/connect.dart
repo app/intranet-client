@@ -107,8 +107,8 @@ class _ConnectState extends State<Connect> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => SignIn()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignIn(url: intranetUrl)));
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(bgColor),

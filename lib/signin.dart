@@ -4,19 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:first/connect.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+  const SignIn({Key? key, required this.url}) : super(key: key);
+
+  final String url;
 
   @override
-  _SignInState createState() => _SignInState();
+  // ignore: no_logic_in_create_state
+  _SignInState createState() => _SignInState(url: url);
 }
 
 class _SignInState extends State<SignIn> {
+  final String url;
+  _SignInState({required this.url});
   @override
   Widget build(BuildContext context) {
     final Color bgColor = Color(int.parse("0xFF007291"));
     return Scaffold(
       appBar: AppBar(
-        title: const Text('https://intranet.signapi.art sign in'),
+        title: Text('Sign In to $url'),
         backgroundColor: bgColor,
       ),
       body: SingleChildScrollView(
