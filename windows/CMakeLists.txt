@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(first LANGUAGES CXX)
+project(intranet_client LANGUAGES CXX)
 
-set(BINARY_NAME "first")
+set(BINARY_NAME "intranet_client")
 
 cmake_policy(SET CMP0063 NEW)
 

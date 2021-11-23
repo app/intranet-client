@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:first/signin.dart';
-import 'package:first/scanner.dart';
-import 'package:first/theme.dart';
+import 'package:intranet_client/signin.dart';
+import 'package:intranet_client/scanner.dart';
+import 'package:intranet_client/theme.dart';
 
 const secureProtocol = 'https://';
 const plainProtocol = 'http://';

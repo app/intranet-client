@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:first/connect.dart';
+import 'package:intranet_client/connect.dart';
 
 void main() => runApp(const MyApp());
 

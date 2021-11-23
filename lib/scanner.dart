@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:first/theme.dart';
+import 'package:intranet_client/theme.dart';
 
 class QRViewWindow extends StatefulWidget {
   const QRViewWindow({Key? key, required this.setUrl}) : super(key: key);
