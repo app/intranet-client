@@ -5,8 +5,8 @@ import 'package:first/signin.dart';
 import 'package:first/scanner.dart';
 import 'package:first/theme.dart';
 
-const httpsProtocol = 'https://';
-const httpProtocol = 'http://';
+const secureProtocol = 'https://';
+const plainProtocol = 'http://';
 
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);
@@ -17,17 +17,17 @@ class Connect extends StatefulWidget {
 
 class _ConnectState extends State<Connect> {
   String intranetUrl = '';
-  String protocol = httpsProtocol;
+  String protocol = secureProtocol;
   setUrl(url) {
     setState(() {
-      if (url.toString().trim().contains(httpsProtocol, 0)) {
-        intranetUrl = url.toString().trim().replaceFirst(httpsProtocol, '');
-        protocol = httpsProtocol;
+      if (url.toString().trim().contains(secureProtocol, 0)) {
+        intranetUrl = url.toString().trim().replaceFirst(secureProtocol, '');
+        protocol = secureProtocol;
         return;
       }
-      if (url.toString().trim().contains(httpProtocol, 0)) {
-        intranetUrl = url.toString().trim().replaceFirst(httpProtocol, '');
-        protocol = httpProtocol;
+      if (url.toString().trim().contains(plainProtocol, 0)) {
+        intranetUrl = url.toString().trim().replaceFirst(plainProtocol, '');
+        protocol = plainProtocol;
         return;
       }
       intranetUrl = url;
@@ -91,7 +91,7 @@ class _ConnectState extends State<Connect> {
                   onChanged: (text) {
                     if (text == '') {
                       setState(() {
-                        protocol = httpsProtocol;
+                        protocol = secureProtocol;
                         intranetUrl = text;
                       });
                     }
