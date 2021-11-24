@@ -7,6 +7,7 @@ import 'package:intranet_client/theme.dart';
 
 const secureProtocol = 'https://';
 const plainProtocol = 'http://';
+const defautlIntranetUrl = 'intranet.example.com';
 
 class Connect extends StatefulWidget {
   const Connect({Key? key}) : super(key: key);
@@ -16,21 +17,24 @@ class Connect extends StatefulWidget {
 }
 
 class _ConnectState extends State<Connect> {
-  String intranetUrl = '';
   String protocol = secureProtocol;
+  final intranetUrl = TextEditingController()..text = defautlIntranetUrl;
+
   setUrl(url) {
     setState(() {
       if (url.toString().trim().contains(secureProtocol, 0)) {
-        intranetUrl = url.toString().trim().replaceFirst(secureProtocol, '');
+        intranetUrl.text =
+            url.toString().trim().replaceFirst(secureProtocol, '');
         protocol = secureProtocol;
         return;
       }
       if (url.toString().trim().contains(plainProtocol, 0)) {
-        intranetUrl = url.toString().trim().replaceFirst(plainProtocol, '');
+        intranetUrl.text =
+            url.toString().trim().replaceFirst(plainProtocol, '');
         protocol = plainProtocol;
         return;
       }
-      intranetUrl = url;
+      intranetUrl.text = url;
     });
   }
 
@@ -68,16 +72,32 @@ class _ConnectState extends State<Connect> {
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.qr_code_rounded),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => QRViewWindow(setUrl: setUrl),
-                          ),
-                        );
-                      },
+                    suffixIcon: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        IconButton(
+                          onPressed: () {
+                            intranetUrl.clear();
+                            protocol = secureProtocol;
+                            setState(() {});
+                          },
+                          icon: Icon(
+                              intranetUrl.text.isNotEmpty ? Icons.clear : null),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.qr_code_rounded),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    QRViewWindow(setUrl: setUrl),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 15, top: 15, bottom: 15),
@@ -87,14 +107,13 @@ class _ConnectState extends State<Connect> {
                       ),
                     ),
                   ),
-                  controller: TextEditingController()..text = intranetUrl,
+                  controller: intranetUrl,
                   onChanged: (text) {
-                    if (text == '') {
-                      setState(() {
+                    setState(() {
+                      if (text == '') {
                         protocol = secureProtocol;
-                        intranetUrl = text;
-                      });
-                    }
+                      }
+                    });
                   },
                 ),
               ),
@@ -108,7 +127,7 @@ class _ConnectState extends State<Connect> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SignIn(url: intranetUrl)));
+                          builder: (context) => SignIn(url: intranetUrl.text)));
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(bgColor),
@@ -127,5 +146,11 @@ class _ConnectState extends State<Connect> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    intranetUrl.dispose();
+    super.dispose();
   }
 }
