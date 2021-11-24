@@ -71,6 +71,7 @@ class _ConnectState extends State<Connect> {
                 padding: EdgeInsets.only(top: 50, bottom: 10),
                 child: TextField(
                   decoration: InputDecoration(
+                    labelText: 'Intranet connection URL',
                     border: OutlineInputBorder(),
                     suffixIcon: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
